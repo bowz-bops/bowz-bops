@@ -47,6 +47,10 @@ jobs:
       - name: Run database migrations
         run: npx prisma migrate deploy
       - name: Seed database
+        # Test-only credentials for the disposable PostgreSQL service.
+        env:
+          SEED_ADMIN_PASSWORD: changeme
+          SEED_USER_PASSWORD: changeme
         run: npm run seed
       - name: Verify database connection
         run: npx prisma db execute --stdin <<< "SELECT COUNT(*) FROM \"User\";"
