@@ -3,16 +3,16 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { Button, Form, Modal } from 'react-bootstrap';
-import { Bookmark, Check2, Disc, Headphones, Pencil, Plus, Search } from 'react-bootstrap-icons';
+import { Bookmark, Check2, Disc, Facebook, Headphones, Instagram, Pencil, Plus, Search, Spotify, TwitterX, Youtube } from 'react-bootstrap-icons';
 import { playlists, ownedPlaylists, savedPlaylists, type Playlist } from '@/lib/mockups/playlists';
 import PlaylistCard from './PlaylistCard';
 import PlaylistDialog from './PlaylistDialog';
 
-const platformCopyInstructions = {
-  Instagram: 'Paste the link into an Instagram message or a Story link sticker.',
-  Spotify: 'Paste the link into the description of a Spotify playlist you own.',
-  YouTube: 'Paste the link into a YouTube video description.',
-};
+const copyPlatforms = [
+  { name: 'Instagram', Icon: Instagram, instructions: 'Paste the link into an Instagram message or a Story link sticker.' },
+  { name: 'Spotify', Icon: Spotify, instructions: 'Paste the link into the description of a Spotify playlist you own.' },
+  { name: 'YouTube', Icon: Youtube, instructions: 'Paste the link into a YouTube video description.' },
+];
 
 async function readProfileImage(file: FormDataEntryValue | null, fallback: string): Promise<string> {
   if (!(file instanceof File) || !file.size) return fallback;
@@ -157,17 +157,26 @@ export default function MyPlaylists({ initialPlaylist }: { initialPlaylist?: str
           <Form.Label htmlFor="share-link">Playlist preview link</Form.Label>
           <Form.Control id="share-link" readOnly value={shareUrl} />
           <div className="d-flex flex-wrap gap-2 mt-3" role="group" aria-label="Share destinations">
-            <Button variant="outline-secondary" target="_blank" rel="noopener noreferrer"
+            <Button variant="outline-secondary" className="d-inline-flex align-items-center justify-content-center p-2" target="_blank" rel="noopener noreferrer"
+              aria-label="Share on Facebook" title="Share on Facebook"
               href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}>
-              Facebook
+              <Facebook size={24} aria-hidden="true" />
             </Button>
-            <Button variant="outline-secondary" target="_blank" rel="noopener noreferrer"
+            <Button variant="outline-secondary" className="d-inline-flex align-items-center justify-content-center p-2" target="_blank" rel="noopener noreferrer"
+              aria-label="Share on Twitter / X" title="Share on Twitter / X"
               href={`https://twitter.com/intent/tweet?${new URLSearchParams({ text: share?.title ?? '', url: shareUrl })}`}>
-              Twitter / X
+              <TwitterX size={24} aria-hidden="true" />
             </Button>
-            {Object.entries(platformCopyInstructions).map(([platform, instructions]) => (
-              <Button key={platform} variant="outline-secondary" onClick={() => copyShareLink(instructions)}>
-                Copy for {platform}
+            {copyPlatforms.map(({ name, Icon, instructions }) => (
+              <Button
+                key={name}
+                variant="outline-secondary"
+                className="d-inline-flex align-items-center justify-content-center p-2"
+                aria-label={`Copy link for ${name}`}
+                title={`Copy link for ${name}`}
+                onClick={() => copyShareLink(instructions)}
+              >
+                <Icon size={24} aria-hidden="true" />
               </Button>
             ))}
           </div>
