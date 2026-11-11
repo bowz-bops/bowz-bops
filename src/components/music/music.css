@@ -156,3 +156,32 @@
 .chart-cta { margin-top: 30px; background: #eeecda; border-radius: 7px; padding: 28px; display: flex; align-items: center; justify-content: space-between; gap: 22px; position: relative; overflow: hidden; }.chart-cta .eyebrow { font-size: 8px; letter-spacing: 1.4px; }.chart-cta h2 { font: 23px Georgia, serif; margin: 9px 0 0; max-width: 500px; }.chart-cta .primary-music-button { position: relative; z-index: 1; }.cta-arrow { color: #d1d4b5; position: absolute; right: 150px; top: -10px; font-size: 170px; transform: rotate(-15deg); }
 @media (max-width: 991px) { .hero-disc { right: -10px; }.chart-hero-copy h2 { font-size: 38px; }.podium-grid { gap: 15px; }.podium-bottom { flex-wrap: wrap; }.chart-table td,.chart-table th { padding-inline: 15px; } }
 @media (max-width: 700px) { .leaderboard-hero { padding: 25px 22px; min-height: 365px; align-items: flex-start; }.chart-hero-copy h2 { font-size: 36px; margin-top: 20px; }.chart-hero-copy h2 > span { font-size: 22px; }.chart-hero-copy > p { font-size: 11px; }.chart-edition { font-size: 7px; letter-spacing: 1px; }.chart-hero-bottom { max-width: 160px; font-size: 8px; gap: 8px; margin-top: 24px; }.hero-disc { width: 195px; height: 195px; right: -46px; top: 206px; }.disc-label > strong { font-size: 13px; }.disc-label > svg { font-size: 15px; margin-bottom: 0; }.disc-label > span { font-size: 5px; letter-spacing: 1px; }.disc-label > small { display: none; }.hero-stamp { width: 48px; height: 48px; font-size: 6px; right: 16px; top: 16px; }.charts-section > .section-heading { flex-direction: column; gap: 16px; }.charts-section { margin-top: 30px; }.category-tabs { gap: 7px; margin: 23px 0; }.category-tabs > button { padding: 8px 13px; font-size: 10px; }.chart-section-label { gap: 20px; font-size: 8px; line-height: 1.5; }.chart-section-label > span:first-child { font-size: 7px; }.chart-section-label > span:last-child { text-align: right; max-width: 115px; }.podium-grid { grid-template-columns: 1fr; gap: 22px; }.podium-content { padding: 27px 22px 0; }.podium-content h3 { font-size: 22px; }.podium-content > p { font-size: 12px; }.podium-bottom { padding: 17px 0; }.podium-bottom > span { font-size: 14px; }.podium-bottom > button { font-size: 10px; }.chart-table .category-column,.chart-table .songs-column { display: none; }.chart-table td,.chart-table th { padding: 12px 9px; }.table-rank { font-size: 11px; }.table-playlist { gap: 8px; }.table-playlist strong { font-size: 11px; }.album-small { width: 36px; height: 36px; }.table-playlist .art-title { font-size: 8px; left: 4px; top: 7px; }.full-chart-heading h3 { font-size: 20px; }.full-chart-heading > span { font-size: 9px; text-align: right; max-width: 120px; }.save-control { padding: 6px; }.like-control { gap: 4px; font-size: 10px !important; }.chart-cta { padding: 23px; flex-direction: column; align-items: flex-start; }.chart-cta h2 { font-size: 24px; }.cta-arrow { right: -20px; top: 50px; }.chart-cta .eyebrow { font-size: 7px; }.chart-notice { line-height: 1.6; } }
+
+.creator-profile-link {
+  color: #456342;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.creator-profile-link:hover {
+  color: #213e2d;
+}
+
+.table-playlist-cover,
+.table-playlist-title {
+  background: none;
+  border: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.creator-avatar {
+  display: grid;
+  place-items: center;
+  flex: 0 0 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #e4d9b6;
+  color: #244d3c;
+  font: italic 32px Georgia, serif;
+}

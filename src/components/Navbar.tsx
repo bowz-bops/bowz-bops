@@ -13,7 +13,7 @@ const NavBar: React.FC = () => {
   const [plannedPage, setPlannedPage] = useState('');
   const currentUser = session?.user?.email;
   const role = session?.user?.role;
-  const isMusicMockup = pathName === '/my-playlists' || pathName === '/leaderboard';
+  const isMusicMockup = pathName === '/my-playlists' || pathName === '/leaderboard' || pathName.startsWith('/profiles/');
   if (!isMusicMockup) return (
     <Navbar bg="light" expand="lg">
       <Container>
