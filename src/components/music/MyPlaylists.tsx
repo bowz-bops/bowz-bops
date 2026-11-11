@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { Button, Form, Modal } from 'react-bootstrap';
-import { Bookmark, Check2, Disc, Headphones, Pencil, Plus, Search } from 'react-bootstrap-icons';
+import { ArrowRight, Bookmark, Check2, Disc, Headphones, Pencil, Plus, Search } from 'react-bootstrap-icons';
 import { playlists, ownedPlaylists, savedPlaylists, type Playlist } from '@/lib/mockups/playlists';
 import PlaylistCard from './PlaylistCard';
 import PlaylistDialog from './PlaylistDialog';
@@ -42,7 +43,7 @@ export default function MyPlaylists({ initialPlaylist }: { initialPlaylist?: str
           {!filtered.length && <div className="empty-library"><Disc /><h3>No playlists found</h3><p>Try another title or category.</p><button onClick={() => setQuery('')}>Clear search</button></div>}
         </section>
         <section className="playlist-section saved-section" id="saved-playlists" aria-labelledby="saved-heading">
-          <div className="section-heading"><div><p className="eyebrow"><Bookmark /> GOOD FINDS, KEPT CLOSE</p><h2 id="saved-heading">Saved Playlists <span className="count-badge">{saved.length}</span></h2><p>Great mixes from around campus, all in one place.</p></div></div>
+          <div className="section-heading"><div><p className="eyebrow"><Bookmark /> GOOD FINDS, KEPT CLOSE</p><h2 id="saved-heading">Saved Playlists <span className="count-badge">{saved.length}</span></h2><p>Great mixes from around campus, all in one place.</p></div><Link className="text-music-link" href="/leaderboard">Find your next favorite <ArrowRight /></Link></div>
           {removed && <div className="undo-notice" role="status">Removed “{removed.title}” from this preview. <button onClick={() => { setSaved([...saved, removed]); setRemoved(null); }}>Undo</button></div>}
           <div className="playlist-grid">{saved.map((p) => <PlaylistCard key={p.id} playlist={p} saved onView={() => setView(p)} onShare={() => openShare(p)} onUnsave={() => { setSaved(saved.filter((item) => item.id !== p.id)); setRemoved(p); }} />)}</div>
           {!saved.length && <div className="empty-library"><Bookmark /><h3>A little room for discovery</h3><p>Your saved mixes will appear here.</p></div>}

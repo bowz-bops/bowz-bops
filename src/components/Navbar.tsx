@@ -13,7 +13,7 @@ const NavBar: React.FC = () => {
   const [plannedPage, setPlannedPage] = useState('');
   const currentUser = session?.user?.email;
   const role = session?.user?.role;
-  const isMusicMockup = pathName === '/my-playlists';
+  const isMusicMockup = pathName === '/my-playlists' || pathName === '/leaderboard';
   if (!isMusicMockup) return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -21,6 +21,7 @@ const NavBar: React.FC = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto justify-content-start">
+            <Nav.Link href="/leaderboard">Leaderboard</Nav.Link>
             <Nav.Link href="/my-playlists">My Playlists</Nav.Link>
             {currentUser && (
               <>
@@ -77,6 +78,7 @@ const NavBar: React.FC = () => {
             <Nav className="me-auto">
               <Nav.Link as="button" onClick={() => setPlannedPage('Discover Playlists')}>Discover</Nav.Link>
               <Nav.Link as="button" onClick={() => setPlannedPage('Create Playlist')}>Create Playlist</Nav.Link>
+              <Nav.Link href="/leaderboard" active={pathName === '/leaderboard'}>Leaderboard</Nav.Link>
               <Nav.Link href="/my-playlists" active={pathName === '/my-playlists'}>My Playlists</Nav.Link>
             </Nav>
             <Nav>
