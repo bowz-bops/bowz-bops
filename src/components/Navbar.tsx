@@ -98,7 +98,7 @@ const NavBar: React.FC = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Modal show={!!plannedPage} onHide={() => setPlannedPage('')} centered contentClassName="music-modal"><Modal.Header closeButton><Modal.Title>{plannedPage}</Modal.Title></Modal.Header><Modal.Body><p>This page is a separate team mockup and is still on its way.</p><p className="muted">You can explore sample playlists and try the profile controls on My Playlists.</p></Modal.Body><Modal.Footer><Button variant="light" onClick={() => setPlannedPage('')}>Close</Button><Button href="/my-playlists" className="primary-music-button">Go to My Playlists</Button></Modal.Footer></Modal>
+      <Modal show={!!plannedPage} onHide={() => setPlannedPage('')} centered contentClassName="music-modal"><Modal.Header closeButton><Modal.Title>{plannedPage}</Modal.Title></Modal.Header><Modal.Body>{plannedPage === 'Create Playlist' ? 'This will link to the Create Playlist page once it’s ready.' : <><p>This page is a separate team mockup and is still on its way.</p><p className="muted">You can explore sample playlists and try the profile controls on My Playlists.</p></>}</Modal.Body><Modal.Footer><Button variant="light" onClick={() => setPlannedPage('')}>Close</Button>{plannedPage !== 'Create Playlist' && <Button href="/my-playlists" className="primary-music-button">Go to My Playlists</Button>}</Modal.Footer></Modal>
     </>
   );
 };
