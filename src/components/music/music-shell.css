@@ -1,0 +1,160 @@
+/* Site-wide navbar and music footer. */
+
+.music-navbar {
+  background: #13372b !important;
+  min-height: 79px;
+  border-bottom: 1px solid #3d5943;
+  font-family: Arial, sans-serif;
+}
+
+.music-navbar > .container {
+  max-width: 1240px;
+  padding-inline: 40px;
+}
+
+.music-navbar .navbar-brand {
+  color: #f5efd9;
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  gap: 10px;
+  margin-right: 45px;
+}
+
+.music-navbar .navbar-brand:hover {
+  color: #efd477;
+}
+
+.brand-mark {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid #dcca86;
+  border-radius: 50%;
+  color: #dcca86;
+  font-size: 17px;
+}
+
+.music-navbar .nav-link, .music-navbar .nav-link:focus {
+  font-size: 12px;
+  color: #c3cfbd;
+  padding: 27px 0 !important;
+  margin: 0 16px;
+  position: relative;
+}
+
+.music-navbar .nav-link:hover, .music-navbar .nav-link.active {
+  color: #f2d77f;
+}
+
+.music-navbar .nav-link.active::after {
+  position: absolute;
+  content: '';
+  bottom: 16px;
+  height: 2px;
+  left: 0;
+  right: 0;
+  background: #efd477;
+}
+
+.music-navbar .navbar-toggler {
+  border-color: #9aaa8c;
+}
+
+.music-navbar .navbar-toggler-icon {
+  filter: invert(1);
+}
+
+.music-navbar .navbar-nav:last-child .nav-link {
+  margin-right: 0;
+}
+
+.music-navbar .dropdown-menu {
+  font-size: 12px;
+  background: #fffef6;
+  border: 1px solid #dae0d0;
+  padding: 8px;
+}
+
+.music-navbar .dropdown-item {
+  padding: 9px;
+  color: #294b36;
+  border-radius: 3px;
+}
+
+.music-navbar .dropdown-item > svg {
+  margin-right: 7px;
+}
+
+.music-navbar .dropdown-header {
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #7a8972;
+}
+
+.music-footer {
+  background: #f1f1e7;
+  border-top: 1px solid #dde2d3;
+  color: #7a8771;
+  padding: 25px 0;
+  font-family: Arial, sans-serif;
+}
+
+.music-footer-inner {
+  max-width: 1240px;
+  padding: 0 40px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  font-size: 9px;
+}
+
+.music-footer strong {
+  font-size: 14px;
+  color: #426045;
+  margin-right: 12px;
+}
+
+.music-footer a {
+  color: #627859;
+  text-decoration: none;
+}
+
+@media (max-width: 991px) {
+  .music-navbar > .container {
+    padding-inline: 25px;
+  }
+
+  .music-navbar .nav-link {
+    padding: 12px 0 !important;
+    margin: 0;
+  }
+
+  .music-navbar .nav-link.active::after {
+    bottom: 5px;
+    right: auto;
+    width: 28px;
+  }
+
+  .music-navbar .navbar-collapse {
+    padding: 15px 0;
+  }
+
+  .music-navbar .navbar-brand {
+    padding-block: 16px;
+  }
+}
+
+@media (max-width: 700px) {
+  .music-footer-inner {
+    padding-inline: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
