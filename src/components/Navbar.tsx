@@ -5,7 +5,6 @@ import { useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 import { Container, Nav, Navbar, NavDropdown, Modal, Button } from 'react-bootstrap';
 import { BoxArrowRight, Headphones, Lock, PersonFill, PersonPlusFill } from 'react-bootstrap-icons';
-import './music/music.css';
 
 const NavBar: React.FC = () => {
   const { data: session } = useSession();
