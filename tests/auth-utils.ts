@@ -41,21 +41,9 @@ async function authenticateWithUI(
       await page.goto(BASE_URL);
       await page.waitForLoadState('networkidle');
 
-      // Check if we're authenticated by looking for a sign-out option or user email
-      const isAuthenticated = await Promise.race([
-        page.getByText(email).isVisible().then((visible) => visible),
-        page.getByRole('button', { name: email }).isVisible().then((visible) => visible),
-        page.getByText('Sign out').isVisible().then((visible) => visible),
-        page.getByRole('button', { name: 'Sign out' }).isVisible().then((visible) => visible),
-        new Promise<boolean>((resolve) => setTimeout(() => resolve(false), 3000)),
-      ]);
-
-      if (isAuthenticated) {
-        console.log(`✓ Restored session for ${email}`);
-        return;
-      }
-
-      console.log(`× Saved session for ${email} expired, re-authenticating...`);
+      await expectSignedIn(page);
+      console.log(`✓ Restored session for ${email}`);
+      return;
     } catch (error) {
       console.log(`× Error restoring session: ${error}`);
     }
@@ -75,23 +63,9 @@ async function authenticateWithUI(
       { selector: 'input[name="password"]', value: password },
     ]);
 
-    // Click submit button and wait for navigation
-    const submitButton = page.getByRole('button', { name: /sign[ -]?in/i });
-    if (!await submitButton.isVisible({ timeout: 1000 })) {
-      // Try alternative selector if the first one doesn't work
-      await page.getByRole('button', { name: /log[ -]?in/i }).click();
-    } else {
-      await submitButton.click();
-    }
-
-
-    // Wait for a clear post-login indicator (user button or sign out button)
-    const userButton = page.getByRole('button', { name: email });
-    const signOutButton = page.getByRole('button', { name: /sign out/i });
-    await Promise.any([
-      expect(userButton).toBeVisible({ timeout: 10000 }),
-      expect(signOutButton).toBeVisible({ timeout: 10000 })
-    ]);
+    // Scope the submit button to the form because the navbar has its own Sign In button.
+    await page.locator('form').getByRole('button', { name: /^sign[ -]?in$/i }).click();
+    await expectSignedIn(page);
 
     // Save session for future tests
     const cookies = await page.context().cookies();
@@ -102,6 +76,20 @@ async function authenticateWithUI(
 
     throw new Error(`Authentication failed: ${error}`);
   }
+}
+
+async function expectSignedIn(page: Page): Promise<void> {
+  const accountMenu = page.locator('#login-dropdown');
+  await expect(accountMenu).toBeVisible({ timeout: 10000 });
+  await expect(accountMenu).not.toHaveText(/^\s*sign in\s*$/i, { timeout: 10000 });
+  await accountMenu.click();
+  await expect(page.getByRole('link', { name: 'Sign Out', exact: true })).toBeVisible();
+  await accountMenu.click();
+}
+
+export async function openAccountLink(page: Page, name: string): Promise<void> {
+  await page.locator('#login-dropdown').click();
+  await page.getByRole('link', { name, exact: true }).click();
 }
 
 /**
