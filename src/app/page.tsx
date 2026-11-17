@@ -1,18 +1,26 @@
-import { Col, Container, Image, Row } from 'react-bootstrap';
+import { Col, Container, Button, Row } from 'react-bootstrap';
 
 /** The Home page. */
 const Home = () => (
   <main>
     <Container id="landing-page" fluid className="py-3">
       <Row className="align-middle text-center">
-        <Col xs={4}>
-          <Image src="next.svg" width="150px" alt="" />
+        <Col className="d-flex flex-column justify-content-center pt-5">
+          <h2>Welcome to</h2>
+          <h1>Bowz Bops</h1>
+          <p>A place to share and discover playlists</p>
+          <p>that UH Mānoa students are listening to!</p>
         </Col>
-
-        <Col xs={8} className="d-flex flex-column justify-content-center">
-          <h1>Welcome to this template</h1>
-          <p>Now get to work and modify this app!</p>
+      </Row>
+      <Row>
+        <Col xs={5}></Col>
+        <Col xs={1}>
+          <Button href="auth/signin" variant='outline-info'>Sign In</Button>
         </Col>
+        <Col xs={2}>
+          <Button href="auth/signup" variant='outline-info'>Create Account</Button>
+        </Col>
+        <Col xs={5}></Col>
       </Row>
     </Container>
   </main>
