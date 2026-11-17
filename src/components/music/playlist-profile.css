@@ -1,0 +1,249 @@
+/* Profile banner shared by My Playlists and creator profiles. */
+
+.profile-banner {
+  position: relative;
+  overflow: hidden;
+  background: #193e31;
+  color: #f8f6e9;
+  padding: 22px 32px 35px;
+  border-radius: 8px;
+}
+
+.profile-topline {
+  display: flex;
+  justify-content: space-between;
+  color: #b5c4a7;
+  font-size: 9px;
+  letter-spacing: 1.7px;
+  border-bottom: 1px solid #ffffff1c;
+  padding-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.tiny-star {
+  color: var(--gold);
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.profile-main {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  margin-top: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.profile-avatar {
+  width: 128px;
+  height: 128px;
+  flex: 0 0 128px;
+  border: 5px solid #b3b58e;
+  border-radius: 50%;
+  background: #e4d9b6;
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: #244d3c;
+}
+
+.profile-avatar > svg {
+  position: absolute;
+  width: 82%;
+  height: 82%;
+  top: 12px;
+  stroke: #e4d9b6;
+  stroke-width: .15;
+}
+
+.profile-avatar > span {
+  background: #244d3c;
+  border-radius: 50% 50% 10% 10%;
+  color: #e4d9b6;
+  padding: 3px 11px;
+  font: italic 28px Georgia, serif;
+  margin-top: 34px;
+}
+
+.profile-copy {
+  max-width: 480px;
+}
+
+.profile-handle {
+  font-size: 12px;
+  color: #c3cdaf;
+}
+
+.profile-copy h2 {
+  font-size: 38px;
+  font-weight: 600;
+  letter-spacing: -1px;
+  margin: 3px 0 8px;
+}
+
+.profile-copy > p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #d1d8c7;
+  margin-bottom: 18px;
+  max-width: 390px;
+}
+
+.profile-stats {
+  display: flex;
+  gap: 23px;
+  font-size: 11px;
+  color: #c4cdb8;
+}
+
+.profile-stats strong {
+  color: #f9f3df;
+  font-size: 15px;
+  margin-right: 4px;
+}
+
+.edit-profile-button {
+  margin: 0 0 auto auto;
+  border: 1px solid #c5d0b66e;
+  color: #f1f1df;
+  background: #234b3c;
+  border-radius: 4px;
+  padding: 9px 15px;
+  font-size: 11px !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.edit-profile-button:hover {
+  background: #37614b;
+}
+
+.banner-record {
+  width: 330px;
+  height: 330px;
+  border: 1px solid #ffffff10;
+  border-radius: 50%;
+  position: absolute;
+  right: -55px;
+  bottom: -135px;
+  box-shadow: 0 0 0 20px #ffffff03, 0 0 0 40px #ffffff04, 0 0 0 60px #ffffff03, 0 0 0 80px #ffffff03;
+}
+
+.banner-record span {
+  position: absolute;
+  inset: 100px;
+  border-radius: 50%;
+  background: #c9b66f18;
+}
+
+@media (max-width: 991px) {
+  .profile-main {
+    gap: 20px;
+  }
+
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+    flex-basis: 100px;
+  }
+
+  .profile-copy {
+    max-width: 380px;
+  }
+
+  .profile-copy h2 {
+    font-size: 32px;
+  }
+
+  .profile-stats {
+    gap: 13px;
+  }
+}
+
+@media (max-width: 700px) {
+  .profile-banner {
+    padding: 18px 20px 24px;
+  }
+
+  .profile-topline {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+
+  .profile-topline > span:last-child {
+    display: none;
+  }
+
+  .profile-main {
+    align-items: flex-start;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+
+  .profile-avatar {
+    width: 77px;
+    height: 77px;
+    flex-basis: 77px;
+    border-width: 3px;
+  }
+
+  .profile-avatar > svg {
+    top: 5px;
+  }
+
+  .profile-avatar > span {
+    font-size: 20px;
+    padding: 0 8px;
+    margin-top: 20px;
+  }
+
+  .profile-copy {
+    flex: 1;
+    min-width: 180px;
+  }
+
+  .profile-copy h2 {
+    font-size: 29px;
+  }
+
+  .profile-copy > p {
+    font-size: 11px;
+    margin-bottom: 13px;
+  }
+
+  .profile-handle {
+    font-size: 10px;
+  }
+
+  .profile-stats {
+    flex-wrap: wrap;
+    gap: 8px 13px;
+    font-size: 9px;
+  }
+
+  .profile-stats strong {
+    font-size: 12px;
+  }
+
+  .edit-profile-button {
+    margin: 0 0 0 92px;
+    padding: 8px 12px;
+  }
+}
+
+.creator-avatar {
+  display: grid;
+  place-items: center;
+  flex: 0 0 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #e4d9b6;
+  color: #244d3c;
+  font: italic 32px Georgia, serif;
+}
