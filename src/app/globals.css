@@ -16,4 +16,5 @@ body {
 #landing-page {
   background-image: url("../../public/landing-page-background.png");
   background-size: cover;
+  min-height: 100vh
 }
