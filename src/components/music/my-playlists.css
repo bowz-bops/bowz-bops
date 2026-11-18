@@ -1,0 +1,153 @@
+/* My Playlists search, sorting, saved collection, and empty states. */
+
+.library-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 20px;
+}
+
+.library-search {
+  border: 1px solid #dfe3d7;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  width: 345px;
+  font-size: 11px;
+  color: #8a9385;
+  background: #fffef9;
+}
+
+.library-search input {
+  background: transparent;
+  border: 0;
+  width: 100%;
+  color: var(--ink);
+  outline-offset: 3px;
+}
+
+.library-search input::placeholder {
+  color: #8a9385;
+}
+
+.sort-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #7f897c;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.sort-control select {
+  border: none;
+  color: #3d5140;
+  background: transparent;
+  font-weight: 600;
+  padding: 6px 8px;
+  font-size: 11px;
+}
+
+.saved-section {
+  border-top: 1px solid var(--line);
+  margin-top: 39px;
+  padding-top: 32px;
+}
+
+.collection-end {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 45px 0 18px;
+  color: #7d8a70;
+}
+
+.collection-end svg {
+  font-size: 23px;
+  margin-bottom: 12px;
+}
+
+.collection-end p {
+  font: italic 20px Georgia, serif;
+  color: #596b4e;
+  margin-bottom: 8px;
+}
+
+.collection-end span {
+  font-size: 7px;
+  letter-spacing: 2px;
+}
+
+.empty-library {
+  padding: 50px;
+  text-align: center;
+  background: #f0f1e8;
+  border-radius: 8px;
+}
+
+.empty-library > svg {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.empty-library h3 {
+  font-size: 20px;
+}
+
+.empty-library p {
+  font-size: 13px;
+  color: #74836d;
+}
+
+.empty-library button {
+  color: #244c34;
+  border: 1px solid #244c34;
+  background: transparent;
+  border-radius: 4px;
+  padding: 7px 12px;
+  font-size: 12px;
+}
+
+.undo-notice {
+  font-size: 12px;
+  padding: 12px;
+  margin-bottom: 18px;
+  border: 1px solid #d5dfc9;
+  background: #eff2e6;
+  border-radius: 4px;
+}
+
+.undo-notice button {
+  border: none;
+  background: transparent;
+  font-weight: 700;
+  color: #315b3c;
+  text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+  .library-toolbar {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .library-search {
+    width: 100%;
+  }
+
+  .sort-control {
+    margin-left: auto;
+  }
+
+  .saved-section .section-heading {
+    flex-direction: column;
+    gap: 17px;
+  }
+
+  .collection-end {
+    padding-top: 35px;
+  }
+}

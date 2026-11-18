@@ -5,7 +5,7 @@ import { prisma } from '@/lib/prisma';
 import { auth } from '@/lib/auth';
 import EditStuffForm from '@/components/EditStuffForm';
 
-export default async function EditStuffPage({ params }: { params: { id: string | string[] } }) {
+export default async function EditStuffPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   // Protect the page, only logged in users can access it.
   const session = await auth();
