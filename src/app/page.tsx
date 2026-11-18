@@ -2,8 +2,8 @@ import { Col, Container, Button, Row } from 'react-bootstrap';
 
 /** The Home page. */
 const Home = () => (
-  <main>
-    <Container id="landing-page" fluid className="py-3">
+  <main id="landing-page">
+    <Container fluid className="py-3">
       <Row className="align-middle text-center">
         <Col className="d-flex flex-column justify-content-center pt-5">
           <h2>Welcome to</h2>
