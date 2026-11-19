@@ -132,6 +132,7 @@ export default function EditPlaylistForm({
         </div>
 
         <Form onSubmit={handleFinish}>
+          
           {/* Playlist Details */}
           <Card className="mb-4 shadow-sm p-3">
             <Card.Body>

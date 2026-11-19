@@ -5,7 +5,7 @@ import { Button, Card, Col, Form, Row } from 'react-bootstrap';
 import { Trash, Plus, Check2, MusicNoteList } from 'react-bootstrap-icons';
 
 interface Song {
-  id: number;
+  id: string;
   name: string;
   artist: string;
   year: string;
@@ -27,7 +27,7 @@ export default function CreatePlaylistForm() {
   const [link, setLink] = useState('');
 
    const [songs, setSongs] = useState<Song[]>([
-    { id: 1, name: 'Somewhere over the rainbow', artist: 'Iz', year: '1993', genre: 'Island', link: '' }
+    { id: '1', name: 'Somewhere over the rainbow', artist: 'Iz', year: '1993', genre: 'Island', link: '' }
   ]);
   
 
@@ -41,8 +41,7 @@ export default function CreatePlaylistForm() {
   setInfoNotice(`Saved "${playlistName.trim()}" (${category} · ${visibility}).`);
 }; 
 
-  const handleAddSong = (e: React.SubmitEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleAddSong = () => {
     if (!songName.trim() || !artist.trim()) return;
 
     const newSong: Song = {
@@ -62,7 +61,7 @@ export default function CreatePlaylistForm() {
     setLink('');
   };
 
-  const handleRemoveSong = (id: number) => {
+  const handleRemoveSong = (id: string) => {
     setSongs((prev) => prev.filter((song) => song.id !== id));
   };
 
@@ -253,11 +252,14 @@ export default function CreatePlaylistForm() {
                     key={song.id}
                     className="list-group-item d-flex justify-content-between align-items-center"
                   >
-                    <div>
+                    <div className="d-flex align-items-center gap-3">
+                      <MusicNoteList size={16} aria-hidden="true" />
+                      <span>
                       <strong>
                         {index + 1}. {song.name}
                       </strong>{' '}
                       | {song.artist} | {song.year} | {song.genre}
+                      </span>
                     </div>
                     <Button
                       variant="outline-danger"
