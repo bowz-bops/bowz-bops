@@ -1,0 +1,11 @@
+.include-landing-background {
+    background-image: url("../../../public/landing-page-background.png");
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.landing-text-style {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #efd477;
+  font-weight: 700;
+}

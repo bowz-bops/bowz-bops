@@ -6,6 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { Card, Col, Container, Button, Form, Row } from 'react-bootstrap';
 import { createUser } from '@/lib/dbActions';
+import '../auth-style.css';
 
 type SignUpForm = {
   email: string;
@@ -44,7 +45,7 @@ const SignUp = () => {
   };
 
   return (
-    <main>
+    <main className='include-landing-background landing-text-style'> 
       <Container className='pt-2'>
         <Row className="justify-content-center">
           <Col xs={5}>
@@ -83,12 +84,12 @@ const SignUp = () => {
                   <Form.Group className="form-group py-3">
                     <Row>
                       <Col>
-                        <Button variant="outline-info" type="submit" className="btn">
+                        <Button variant="outline-warning" type="submit" className="btn">
                           Create Account
                         </Button>
                       </Col>
                       <Col>
-                        <Button variant="outline-warning" type="button" onClick={() => reset()} className="btn float-right">
+                        <Button variant="outline-danger" type="button" onClick={() => reset()} className="btn float-right">
                           Reset
                         </Button>
                       </Col>
