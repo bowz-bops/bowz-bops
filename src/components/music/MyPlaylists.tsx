@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { ArrowRight, Bookmark, Check2, Disc, Facebook, Headphones, Instagram, Pencil, Plus, Search, Spotify, TwitterX, Youtube } from 'react-bootstrap-icons';
@@ -29,6 +30,7 @@ async function readProfileImage(file: FormDataEntryValue | null, fallback: strin
 }
 
 export default function MyPlaylists({ initialPlaylist }: { initialPlaylist?: string }) {
+  const router = useRouter();
   const [profile, setProfile] = useState({ name: 'Katrina', username: 'katrina', bio: 'UH Mānoa music fan. A little indie, a little island, and a playlist for every mood.', photo: '/profiles/katrina.jpg', background: '' });
   const [draft, setDraft] = useState(profile);
   const [editProfile, setEditProfile] = useState(false);
@@ -84,7 +86,7 @@ export default function MyPlaylists({ initialPlaylist }: { initialPlaylist?: str
         <section className="playlist-section" aria-labelledby="mine-heading">
           <div className="section-heading"><div><p className="eyebrow">CURATED BY YOU</p><h2 id="mine-heading">My Playlists <span className="count-badge">{mine.length}</span></h2><p>Your moods, your moments, your soundtrack.</p></div><button className="primary-music-button" onClick={() => setPlaylistNotice('Create Playlist')}><Plus size={21} /> Create Playlist</button></div>
           <div className="library-toolbar"><label className="library-search"><Search /><input aria-label="Search your playlists" placeholder="Find a playlist in your collection…" value={query} onChange={(e) => setQuery(e.target.value)} /></label><label className="sort-control">Sort by <select aria-label="Sort your playlists" value={sort} onChange={(e) => setSort(e.target.value)}><option value="recent">Recently added</option><option value="likes">Most liked</option><option value="name">Playlist name</option></select></label></div>
-          <div className="playlist-grid">{filtered.map((p) => <PlaylistCard key={p.id} playlist={p} onView={() => setView(p)} onEdit={() => setPlaylistNotice('Edit Playlist')} onShare={() => openShare(p)} />)}</div>
+          <div className="playlist-grid">{filtered.map((p) => <PlaylistCard key={p.id} playlist={p} onView={() => setView(p)} onEdit={() => router.push('/edit-playlist')} onShare={() => openShare(p)} />)}</div>
           {!filtered.length && <div className="empty-library"><Disc /><h3>No playlists found</h3><p>Try another title or category.</p><button onClick={() => setQuery('')}>Clear search</button></div>}
         </section>
         <section className="playlist-section saved-section" id="saved-playlists" aria-labelledby="saved-heading">
