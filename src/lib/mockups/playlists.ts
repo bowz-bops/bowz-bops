@@ -14,7 +14,7 @@ export type Playlist = {
   songs: { title: string; artist: string; duration: string }[];
 };
 
-export const categories = ['All playlists', 'Studying', 'Beach', 'Workout', 'Chill', 'Party'];
+export const categories = ['All playlists', 'Studying', 'Commuting', 'Beach', 'Workout', 'Chill', 'Party', 'Throwbacks'];
 export const playlists: Playlist[] = [
   { id: 'study-session', title: 'Study Session', category: 'Studying', creator: 'Katrina', username: 'katrina', songCount: 12, likes: 8, duration: '42 min', art: 'study', caption: 'ONE MORE CHAPTER', description: 'Soft beats, open books, and a little motivation. Your soundtrack for the Hamilton Library late shift.', songs: [{ title: 'Aruarian Dance', artist: 'Nujabes', duration: '4:10' }, { title: 'A Walk', artist: 'Tycho', duration: '5:16' }, { title: 'Weightless', artist: 'Marconi Union', duration: '8:09' }] },
   { id: 'beach-day', title: 'Beach Day', category: 'Beach', creator: 'Katrina', username: 'katrina', songCount: 15, likes: 5, duration: '54 min', art: 'beach', caption: 'SALT IN THE AIR', description: 'Windows down on the way to the North Shore. A little sunshine for wherever you are.', songs: [{ title: 'Amber', artist: '311', duration: '3:28' }, { title: 'Better Together', artist: 'Jack Johnson', duration: '3:27' }, { title: 'Island in the Sun', artist: 'Weezer', duration: '3:20' }] },
@@ -46,6 +46,18 @@ export const playlists: Playlist[] = [
     songCount: 2, likes: 3, duration: '9 min', art: 'loops', caption: 'FOCUS MODE',
     description: 'Instrumentals for an uninterrupted study session.',
     songs: [{ title: 'Awake', artist: 'Tycho', duration: '4:43' }, { title: 'Aruarian Dance', artist: 'Nujabes', duration: '4:10' }],
+  },
+  {
+    id: 'campus-commute', title: 'Campus Commute', category: 'Commuting', creator: 'Katrina', username: 'katrina',
+    songCount: 3, likes: 14, duration: '11 min', art: 'ocean', caption: 'TAKE THE SCENIC ROUTE',
+    description: 'A little company for the bus ride to campus or the drive home.',
+    songs: [{ title: 'Send Me on My Way', artist: 'Rusted Root', duration: '4:23' }, { title: 'Island in the Sun', artist: 'Weezer', duration: '3:20' }, { title: 'Sunday Best', artist: 'Surfaces', duration: '2:38' }],
+  },
+  {
+    id: 'throwback-rotation', title: 'Throwback Rotation', category: 'Throwbacks', creator: 'Katrina', username: 'katrina',
+    songCount: 3, likes: 18, duration: '12 min', art: 'night', caption: 'YOU KNOW EVERY WORD',
+    description: 'Familiar favorites worth putting back on repeat.',
+    songs: [{ title: 'Everybody Wants to Rule the World', artist: 'Tears for Fears', duration: '4:11' }, { title: 'No Scrubs', artist: 'TLC', duration: '3:34' }, { title: 'I Want It That Way', artist: 'Backstreet Boys', duration: '3:33' }],
   },
 ];
 export const ownedPlaylists = playlists.filter((playlist) => playlist.username === 'katrina');
