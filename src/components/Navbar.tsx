@@ -37,7 +37,7 @@ const NavBar: React.FC = () => {
                   {role === 'ADMIN' && <NavDropdown.Item id="admin-stuff-nav" href="/admin">Admin</NavDropdown.Item>}
                 </> : <>
                   <NavDropdown.Item id="login-dropdown-sign-in" href="/auth/signin"><PersonFill />Sign in</NavDropdown.Item>
-                  <NavDropdown.Item id="login-dropdown-sign-up" href="/auth/signup"><PersonPlusFill />Sign up</NavDropdown.Item>
+                  <NavDropdown.Item id="login-dropdown-sign-up" href="/auth/signup"><PersonPlusFill />Create Account</NavDropdown.Item>
                 </>}
               </NavDropdown>
             </Nav>
