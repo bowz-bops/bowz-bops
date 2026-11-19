@@ -117,6 +117,8 @@ export default function CreatePlaylistForm() {
                       <option value="Workout">Workout</option>
                       <option value="Chill">Chill</option>
                       <option value="Party">Party</option>
+                      <option value="Commuting">Commuting</option>
+                      <option value="Throwbacks">Throwbacks</option>
                     </Form.Select>
                   </Form.Group>
                 </Col>
