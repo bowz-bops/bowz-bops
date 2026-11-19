@@ -45,10 +45,10 @@ const SignUp = () => {
 
   return (
     <main>
-      <Container>
+      <Container className='pt-2'>
         <Row className="justify-content-center">
           <Col xs={5}>
-            <h1 className="text-center">Sign Up</h1>
+            <h1 className="text-center">Create Account</h1>
             <Card>
               <Card.Body>
                 <Form onSubmit={handleSubmit(onSubmit)}>
@@ -83,12 +83,12 @@ const SignUp = () => {
                   <Form.Group className="form-group py-3">
                     <Row>
                       <Col>
-                        <Button type="submit" className="btn btn-primary">
-                          Register
+                        <Button variant="outline-info" type="submit" className="btn">
+                          Create Account
                         </Button>
                       </Col>
                       <Col>
-                        <Button type="button" onClick={() => reset()} className="btn btn-warning float-right">
+                        <Button variant="outline-warning" type="button" onClick={() => reset()} className="btn float-right">
                           Reset
                         </Button>
                       </Col>
@@ -97,7 +97,7 @@ const SignUp = () => {
                 </Form>
               </Card.Body>
               <Card.Footer>
-                Already have an account?
+                Already have an account?&nbsp;
                 <a href="/auth/signin">Sign in</a>
               </Card.Footer>
             </Card>
