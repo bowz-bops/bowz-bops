@@ -1,6 +1,8 @@
 import { Col, Container, Button, Row } from 'react-bootstrap';
 
-/** The Home page. */
+/** The Home page. 
+  AI Usage Note: The background image on this page was generated with AI 
+*/
 const Home = () => (
   <main id="landing-page">
     <Container fluid className="py-3">
