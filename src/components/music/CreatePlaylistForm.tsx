@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Button, Col, Form, Row } from 'react-bootstrap';
-import { Trash, Plus, Check2 } from 'react-bootstrap-icons';
+import { Button, Card, Col, Form, Row } from 'react-bootstrap';
+import { Trash, Plus, Check2, MusicNoteList } from 'react-bootstrap-icons';
 
 interface Song {
   id: number;
@@ -43,18 +43,18 @@ export default function CreatePlaylistForm() {
 
   const handleAddSong = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!songName || !artist) return; // Basic validation
+    if (!songName.trim() || !artist.trim()) return;
 
     const newSong: Song = {
-      id: songs.length + 1,
-      name: songName,
-      artist: artist,
-      year: year || 'Unknown',
-      genre: genre || 'General',
-      link: link,
+      id: crypto.randomUUID(),
+      name: songName.trim(),
+      artist: artist.trim(),
+      year: year.trim() || 'Unknown',
+      genre: genre.trim() || 'General',
+      link: link.trim(),
     };
 
-    setSongs([...songs, newSong]);
+    setSongs((prev) => [...prev, newSong]);
     setSongName('');
     setArtist('');
     setYear('');
@@ -63,7 +63,7 @@ export default function CreatePlaylistForm() {
   };
 
   const handleRemoveSong = (id: number) => {
-    setSongs(songs.filter((song) => song.id !== id));
+    setSongs((prev) => prev.filter((song) => song.id !== id));
   };
 
   const handleFinish = (e: React.SubmitEvent<HTMLFormElement>) => {
@@ -75,25 +75,30 @@ export default function CreatePlaylistForm() {
       <main className="music-page" id="create-playlist-page">
       <div className="music-container">
         <div className="page-intro">
-          <div><p className="eyebrow">MAKE YOUR OWN MIX</p>
-            <h1>Create a new playlist<span className="title-dot">.</span></h1></div>
-          <span className="preview-badge"><span> M1 mockup · sample data</span></span>
+          <div>
+            <p className="eyebrow">MAKE YOUR OWN MIX</p>
+            <h1>
+              Create a new playlist<span className="title-dot">.</span>
+            </h1>
           </div>
+          <span className="preview-badge">
+            <span /> M1 mockup · sample data
+          </span>
+        </div>
     
 
         <Form onSubmit={handleFinish}>
           
           {/* Create Playlist Info */}
-          <section className="playlist-form-card mb-4 shadow-sm p-3">
-            <div className="playlist-card-body">
-              <h3 className="body-title">Create Playlist</h3>
-              <Row>
-                <Col md={12} className="mb-3">
+          <Card className="mb-4 shadow-sm p-3">
+            <Card.Body>
+              <h2 className="h3 mb-3">Create Playlist</h2>
+              <Row className="g-3 align-items-end">
+                <Col xs={12} md={5}>
                   <Form.Group controlId="playlistName">
                     <Form.Label>Name</Form.Label>
-                    <Form.Control 
-                      type="text" 
-                      placeholder="e.g., Mānoa Sunset Session" 
+                    <Form.Control
+                      placeholder="e.g., John's Bops"
                       value={playlistName}
                       onChange={(e) => setPlaylistName(e.target.value)}
                       required
@@ -101,13 +106,14 @@ export default function CreatePlaylistForm() {
                   </Form.Group>
                 </Col>
 
-                <Col md={6} className="mb-3">
+                <Col xs={12} md={3}>
                   <Form.Group controlId="playlistCategory">
                     <Form.Label>Category</Form.Label>
-                    <Form.Select 
+                    <Form.Select
                       value={category}
                       onChange={(e) => setCategory(e.target.value)}
                     >
+                      <option value="Beach">Beach</option>
                       <option value="Indie">Indie</option>
                       <option value="Island">Island / Reggae</option>
                       <option value="Study">Study Beats</option>
@@ -116,10 +122,10 @@ export default function CreatePlaylistForm() {
                   </Form.Group>
                 </Col>
 
-                <Col md={6} className="mb-3">
+                <Col xs={12} md={2}>
                   <Form.Group controlId="playlistVisibility">
                     <Form.Label>Visibility</Form.Label>
-                    <Form.Select 
+                    <Form.Select
                       value={visibility}
                       onChange={(e) => setVisibility(e.target.value)}
                     >
@@ -128,44 +134,45 @@ export default function CreatePlaylistForm() {
                     </Form.Select>
                   </Form.Group>
                 </Col>
-                <Col>
-                <Button
-                  type="button"
-                  onClick={handleSavePlaylistInfo}
-                  className="primary-music-button"
-                >
-                  {savedInfo ? (
-                    <>
-                      <Check2 size={16} /> Saved
-                    </>
-                  ) : (
-                    'Save'
-                  )}
-                </Button>
-                {infoNotice && (
-                  <span className="demo-note m-0" role="status">
-                    {infoNotice}
-                  </span>
-                )}
-              </Col>
+
+                <Col xs={12} md={2}>
+                  <Button
+                    type="button"
+                    onClick={handleSavePlaylistInfo}
+                    className="primary-music-button w-100"
+                  >
+                    {savedInfo ? (
+                      <>
+                        <Check2 size={16} /> Saved
+                      </>
+                    ) : (
+                      'Save'
+                    )}
+                  </Button>
+                </Col>
               </Row>
-              
-            </div>
-          </section>
+
+              {infoNotice && (
+                <p className="demo-note mt-2 mb-0" role="status">
+                  {infoNotice}
+                </p>
+              )}
+            </Card.Body>
+          </Card>
 
           {/* Add Song */}
-          <section className="playlist-form-card mb-4 shadow-sm p-3">
-            <div className="playlist-card-body">
+          <Card className="mb-4 shadow-sm p-3">
+            <Card.Body>
               <h3 className="mb-3">Add Song</h3>
-              
+
               {/* Name, Artist, Year, Genre + Enter Button */}
               <Row className="align-items-end mb-3">
                 <Col md={3}>
                   <Form.Group controlId="songName">
                     <Form.Label>Name</Form.Label>
-                    <Form.Control 
-                      type="text" 
-                      placeholder="Song title" 
+                    <Form.Control
+                      type="text"
+                      placeholder="Song title"
                       value={songName}
                       onChange={(e) => setSongName(e.target.value)}
                     />
@@ -175,9 +182,9 @@ export default function CreatePlaylistForm() {
                 <Col md={3}>
                   <Form.Group controlId="songArtist">
                     <Form.Label>Artist</Form.Label>
-                    <Form.Control 
-                      type="text" 
-                      placeholder="Artist name" 
+                    <Form.Control
+                      type="text"
+                      placeholder="Artist name"
                       value={artist}
                       onChange={(e) => setArtist(e.target.value)}
                     />
@@ -187,9 +194,9 @@ export default function CreatePlaylistForm() {
                 <Col md={2}>
                   <Form.Group controlId="songYear">
                     <Form.Label>Year</Form.Label>
-                    <Form.Control 
-                      type="text" 
-                      placeholder="YYYY" 
+                    <Form.Control
+                      type="text"
+                      placeholder="YYYY"
                       value={year}
                       onChange={(e) => setYear(e.target.value)}
                     />
@@ -199,9 +206,9 @@ export default function CreatePlaylistForm() {
                 <Col md={3}>
                   <Form.Group controlId="songGenre">
                     <Form.Label>Genre</Form.Label>
-                    <Form.Control 
-                      type="text" 
-                      placeholder="Genre" 
+                    <Form.Control
+                      type="text"
+                      placeholder="Genre"
                       value={genre}
                       onChange={(e) => setGenre(e.target.value)}
                     />
@@ -209,9 +216,9 @@ export default function CreatePlaylistForm() {
                 </Col>
 
                 <Col md={1} className="text-end">
-                  <Button 
-                    variant="success" 
-                    type="button" 
+                  <Button
+                    variant="success"
+                    type="button"
                     onClick={handleAddSong}
                     className="primary-music-button"
                     title="Add song to list"
@@ -226,9 +233,9 @@ export default function CreatePlaylistForm() {
                 <Col md={12}>
                   <Form.Group controlId="songLink">
                     <Form.Label>Link (optional)</Form.Label>
-                    <Form.Control 
-                      type="url" 
-                      placeholder="https://open.spotify.com/track/..." 
+                    <Form.Control
+                      type="url"
+                      placeholder="https://open.spotify.com/track/..."
                       value={link}
                       onChange={(e) => setLink(e.target.value)}
                     />
@@ -242,13 +249,19 @@ export default function CreatePlaylistForm() {
               <h5 className="mt-3 mb-3">Playlist Tracks ({songs.length})</h5>
               <div className="list-group">
                 {songs.map((song, index) => (
-                  <div key={song.id} className="list-group-item d-flex justify-content-between align-items-center">
+                  <div
+                    key={song.id}
+                    className="list-group-item d-flex justify-content-between align-items-center"
+                  >
                     <div>
-                      <strong>{index + 1}. {song.name}</strong> | {song.artist} | {song.year} | {song.genre}
+                      <strong>
+                        {index + 1}. {song.name}
+                      </strong>{' '}
+                      | {song.artist} | {song.year} | {song.genre}
                     </div>
-                    <Button 
-                      variant="outline-danger" 
-                      size="sm" 
+                    <Button
+                      variant="outline-danger"
+                      size="sm"
                       onClick={() => handleRemoveSong(song.id)}
                       aria-label={`Remove ${song.name}`}
                     >
@@ -256,11 +269,12 @@ export default function CreatePlaylistForm() {
                     </Button>
                   </div>
                 ))}
-                {!songs.length && <p className="text-muted mb-0">No songs added yet.</p>}
+                {!songs.length && (
+                  <p className="text-muted mb-0">No songs added yet.</p>
+                )}
               </div>
-
-            </div>
-          </section>
+            </Card.Body>
+          </Card>
 
 
           <div>

@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 import { Button, Card, Col, Form, Row } from 'react-bootstrap';
-import { ArrowCounterclockwise, Check2, Plus, Trash } from 'react-bootstrap-icons';
+import { ArrowCounterclockwise, Check2, MusicNoteList, Plus, Trash } from 'react-bootstrap-icons';
 
-export interface Song {
+interface Song {
   id: string;
   name: string;
   artist: string;
@@ -13,7 +13,7 @@ export interface Song {
   link?: string;
 }
 
-export interface EditablePlaylist {
+interface EditablePlaylist {
   id: string;
   name: string;
   category: string;
@@ -23,8 +23,8 @@ export interface EditablePlaylist {
 
 const DEFAULT_PLAYLIST: EditablePlaylist = {
   id: 'playlist-1',
-  name: 'Mānoa Sunset Session',
-  category: 'Island',
+  name: 'John\'s Bops',
+  category: 'Beach',
   visibility: 'Public',
   songs: [
     {
@@ -132,7 +132,7 @@ export default function EditPlaylistForm({
         </div>
 
         <Form onSubmit={handleFinish}>
-          {/* SECTION 1: Playlist Details */}
+          {/* Playlist Details */}
           <Card className="mb-4 shadow-sm p-3">
             <Card.Body>
               <h2 className="h3 mb-3">Playlist Details</h2>
@@ -142,7 +142,7 @@ export default function EditPlaylistForm({
                     <Form.Label>Name</Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="e.g., Mānoa Sunset Session"
+                      placeholder="e.g., John's Bops"
                       value={playlistName}
                       onChange={(e) => {
                         setPlaylistName(e.target.value);
@@ -163,6 +163,7 @@ export default function EditPlaylistForm({
                         setInfoSaved(false);
                       }}
                     >
+                      <option value="Beach">Beach</option>
                       <option value="Indie">Indie</option>
                       <option value="Island">Island / Reggae</option>
                       <option value="Study">Study Beats</option>
@@ -212,10 +213,10 @@ export default function EditPlaylistForm({
             </Card.Body>
           </Card>
 
-          {/* SECTION 2: Manage Songs */}
+          {/* Add Song */}
           <Card className="mb-4 shadow-sm p-3">
             <Card.Body>
-              <h2 className="h3 mb-3">Manage Songs</h2>
+              <h2 className="h3 mb-3">Add Song</h2>
 
               <Row className="g-3 align-items-end mb-3">
                 <Col xs={12} md={3}>
@@ -295,19 +296,23 @@ export default function EditPlaylistForm({
 
               <hr />
 
-              <h3 className="h5 mt-3 mb-3">Playlist Tracks ({songs.length})</h3>
+              <h3 className="h5 mt-3 mb-3">Tracks ({songs.length})</h3>
               <div className="list-group">
                 {songs.map((song, index) => (
                   <div
                     key={song.id}
                     className="list-group-item d-flex justify-content-between align-items-center"
                   >
-                    <div>
+                    <div className="d-flex align-items-center gap-3">
+                      <MusicNoteList size={16} aria-hidden="true" />
+                      <span>
                       <strong>
                         {index + 1}. {song.name}
                       </strong>{' '}
                       | {song.artist} | {song.year} | {song.genre}
+                      </span>
                     </div>
+
                     <Button
                       variant="outline-danger"
                       size="sm"
@@ -332,7 +337,7 @@ export default function EditPlaylistForm({
               size="lg"
               className="primary-music-button px-5"
             >
-              Finish
+              Save
             </Button>
             <Button
               variant="outline-secondary"
