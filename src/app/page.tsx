@@ -6,7 +6,7 @@ import { Col, Container, Button, Row } from 'react-bootstrap';
 const Home = () => (
   <main id="landing-page">
     <Container fluid className="py-3">
-      <Row className="align-middle text-center">
+      <Row className="align-middle text-center" id="landing-text">
         <Col className="d-flex flex-column justify-content-center pt-5">
           <h2>Welcome to</h2>
           <h1>Bowz Bops</h1>
@@ -17,10 +17,10 @@ const Home = () => (
       <Row>
         <Col xs={5}></Col>
         <Col xs={1}>
-          <Button href="auth/signin" variant='outline-info'>Sign In</Button>
+          <Button href="auth/signin" variant='outline-warning'>Sign In</Button>
         </Col>
         <Col xs={2}>
-          <Button href="auth/signup" variant='outline-info'>Create Account</Button>
+          <Button href="auth/signup" variant='outline-warning'>Create Account</Button>
         </Col>
         <Col xs={5}></Col>
       </Row>

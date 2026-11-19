@@ -16,5 +16,17 @@ body {
 #landing-page {
   background-image: url("../../public/landing-page-background.png");
   background-size: cover;
-  min-height: 100vh
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #efd477;
+  font-weight: 700;
+  font-size: 45px;
+}
+
+#landing-page h1 {
+  font-size: 80px;
+}
+
+#landing-page h2 {
+  font-size: 40px;
 }
