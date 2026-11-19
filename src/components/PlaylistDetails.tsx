@@ -31,6 +31,127 @@ import type { Playlist as PrismaPlaylist, Song as PrismaSong } from '@prisma/cli
 import { playlists as mockupPlaylists, type Playlist as MockupPlaylist } from '@/lib/mockups/playlists';
 import AlbumArt from './music/AlbumArt';
 
+export type { MockupPlaylist };
+
+/** Complete campus playlist collection accessible across components */
+export const samplePlaylists: MockupPlaylist[] = [
+  ...mockupPlaylists,
+  {
+    id: 'hamilton-stacks',
+    title: 'Hamilton Stacks',
+    category: 'Studying',
+    creator: 'Katrina',
+    username: 'katrina',
+    songCount: 14,
+    likes: 53,
+    duration: '52 min',
+    art: 'study',
+    caption: 'FOURTH FLOOR SILENCE',
+    description: 'Deep ambient soundscapes and quiet piano for crunch time and finals week.',
+    songs: [
+      { title: 'Treefingers', artist: 'Radiohead', duration: '3:42' },
+      { title: 'Avril 14th', artist: 'Aphex Twin', duration: '2:05' },
+      { title: 'An Ending (Ascent)', artist: 'Brian Eno', duration: '4:26' },
+    ],
+  },
+  {
+    id: 'sandy-afternoon',
+    title: 'Sandy Afternoon',
+    category: 'Beach',
+    creator: 'Kai',
+    username: 'kai',
+    songCount: 18,
+    likes: 62,
+    duration: '1 hr 4 min',
+    art: 'beach',
+    caption: 'WARM SANDS',
+    description: 'Acoustic jams, surf anthems, and sunshine rhythms for long days by the water.',
+    songs: [
+      { title: 'Santeria', artist: 'Sublime', duration: '3:03' },
+      { title: 'Sunday Morning', artist: 'Maroon 5', duration: '4:02' },
+      { title: 'Could You Be Loved', artist: 'Bob Marley', duration: '3:57' },
+    ],
+  },
+  {
+    id: 'pr-breaker',
+    title: 'PR Breaker',
+    category: 'Workout',
+    creator: 'Koa',
+    username: 'katrina',
+    songCount: 12,
+    likes: 48,
+    duration: '44 min',
+    art: 'gym',
+    caption: 'HEAVY ROTATION',
+    description: 'Bass drops, heavy beats, and adrenaline for the Stan Sheriff Center weight room.',
+    songs: [
+      { title: 'Till I Collapse', artist: 'Eminem', duration: '4:57' },
+      { title: 'Power', artist: 'Kanye West', duration: '4:52' },
+      { title: 'Remember the Name', artist: 'Fort Minor', duration: '3:50' },
+    ],
+  },
+  {
+    id: 'cardio-crush',
+    title: 'Cardio Crush',
+    category: 'Workout',
+    creator: 'Katrina',
+    username: 'katrina',
+    songCount: 11,
+    likes: 35,
+    duration: '40 min',
+    art: 'gym',
+    caption: 'KEEP MOVING',
+    description: 'Fast BPM tracks and driving synths for morning runs along Ala Moana.',
+    songs: [
+      { title: 'Can’t Hold Us', artist: 'Macklemore', duration: '4:18' },
+      { title: 'Don’t You Worry Child', artist: 'Swedish House Mafia', duration: '3:32' },
+      { title: 'Eye of the Tiger', artist: 'Survivor', duration: '4:04' },
+    ],
+  },
+  {
+    id: 'sunset-lanai',
+    title: 'Sunset Lānaʻi',
+    category: 'Chill',
+    creator: 'Leilani',
+    username: 'leilani',
+    songCount: 16,
+    likes: 64,
+    duration: '59 min',
+    art: 'sunset',
+    caption: 'EVENING GLOW',
+    description: 'Cool trade winds and mellow acoustic melodies on the dorm balcony.',
+    songs: [
+      { title: 'Japanese Denim', artist: 'Daniel Caesar', duration: '4:30' },
+      { title: 'Peach', artist: 'Kevin Abstract', duration: '2:56' },
+      { title: 'Sunflower', artist: 'Rex Orange County', duration: '4:12' },
+    ],
+  },
+  {
+    id: 'manoa-house-party',
+    title: 'Mānoa House Party',
+    category: 'Party',
+    creator: 'Maya',
+    username: 'maya',
+    songCount: 22,
+    likes: 59,
+    duration: '1 hr 18 min',
+    art: 'night',
+    caption: 'ALOHA FRIDAY',
+    description: 'High energy bangers and throwback crowd-pleasers for Friday nights in the valley.',
+    songs: [
+      { title: 'Around the World', artist: 'Daft Punk', duration: '7:09' },
+      { title: 'Dance the Night', artist: 'Dua Lipa', duration: '2:56' },
+      { title: 'One More Time', artist: 'Daft Punk', duration: '5:20' },
+    ],
+  },
+];
+
+export const playlists: MockupPlaylist[] = samplePlaylists;
+
+export function getPlaylists(): MockupPlaylist[] {
+  return samplePlaylists;
+}
+
 export type NormalizedTrack = {
   id: string | number;
   title: string;
@@ -215,19 +336,19 @@ export default function PlaylistDetails({
   songs: passedSongPlural,
 }: PlaylistDetailsProps = {}) {
   // Support initial lookup similar to MyPlaylists({ initialPlaylist })
-  const defaultMock = mockupPlaylists.find(
+  const defaultMock = samplePlaylists.find(
     (p) =>
       p.id === initialPlaylist ||
       p.id === String(playlistId) ||
       p.title.toLowerCase() === String(initialPlaylist).toLowerCase(),
-  ) || mockupPlaylists[0];
+  ) || samplePlaylists[0];
 
   const [selectedPlaylistId, setSelectedPlaylistId] = useState<string>(
     passedPlaylist && 'id' in passedPlaylist ? String(passedPlaylist.id) : defaultMock.id,
   );
 
   // Active playlist information
-  const activeMockup = mockupPlaylists.find((p) => p.id === selectedPlaylistId) || defaultMock;
+  const activeMockup = samplePlaylists.find((p) => p.id === selectedPlaylistId) || defaultMock;
 
   const playlistTitle =
     (passedPlaylist && (('title' in passedPlaylist && passedPlaylist.title) || ('name' in passedPlaylist && passedPlaylist.name))) ||
@@ -687,7 +808,7 @@ export default function PlaylistDetails({
           </div>
 
           <div className="category-tabs" role="group" aria-label="Switch playlist selection">
-            {mockupPlaylists.map((p) => (
+            {samplePlaylists.map((p) => (
               <button
                 key={p.id}
                 className={p.id === selectedPlaylistId ? 'selected' : ''}

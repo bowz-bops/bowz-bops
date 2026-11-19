@@ -5,10 +5,14 @@ import { Col, Container } from 'react-bootstrap';
 
 const Footer = () => {
   const path = usePathname();
-  if (path === '/my-playlists' 
-  || path === '/leaderboard' 
-  || path.startsWith('/profiles/'))
-    return 
+  if (
+    path === '/my-playlists' ||
+    path === '/leaderboard' ||
+    path === '/discover' ||
+    path.startsWith('/playlist') ||
+    path.startsWith('/profiles/')
+  ) {
+    return (
       <footer className="mt-auto music-footer">
         <div className="music-footer-inner">
           <div>
@@ -17,7 +21,9 @@ const Footer = () => {
           <span>Made for the UH Mānoa community · ICS 314</span>
           <a href="https://bowz-bops.github.io/">About the project ↗</a>
         </div>
-      </footer>;
+      </footer>
+    );
+  }
   
   return (
     <footer className="mt-auto py-3 bg-light">
