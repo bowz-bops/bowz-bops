@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Button, Card, Col, Form, Row } from 'react-bootstrap';
-import { Trash, Plus } from 'react-bootstrap-icons';
+import { Button, Col, Form, Row } from 'react-bootstrap';
+import { Trash, Plus, Check2 } from 'react-bootstrap-icons';
 
 interface Song {
   id: number;
@@ -15,20 +15,33 @@ interface Song {
 
 export default function CreatePlaylistForm() {
   const [playlistName, setPlaylistName] = useState('');
-  const [category, setCategory] = useState('Indie');
+  const [category, setCategory] = useState('Study');
   const [visibility, setVisibility] = useState('Public');
+  const[savedInfo, setSavedInfo] = useState(false);
+  const [infoNotice, setInfoNotice] = useState('');
 
   const [songName, setSongName] = useState('');
   const [artist, setArtist] = useState('');
   const [year, setYear] = useState('');
   const [genre, setGenre] = useState('');
   const [link, setLink] = useState('');
-  
-  const [songs, setSongs] = useState<Song[]>([
+
+   const [songs, setSongs] = useState<Song[]>([
     { id: 1, name: 'Somewhere over the rainbow', artist: 'Iz', year: '1993', genre: 'Island', link: '' }
   ]);
+  
 
-  const handleAddSong = (e: React.FormEvent) => {
+  const handleSavePlaylistInfo = () => {
+  if (!playlistName.trim()) {
+    setSavedInfo(false);
+    setInfoNotice('Please enter a playlist name before saving.');
+    return;
+  }
+  setSavedInfo(true);
+  setInfoNotice(`Saved "${playlistName.trim()}" (${category} · ${visibility}).`);
+}; 
+
+  const handleAddSong = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!songName || !artist) return; // Basic validation
 
@@ -53,28 +66,27 @@ export default function CreatePlaylistForm() {
     setSongs(songs.filter((song) => song.id !== id));
   };
 
-  const handleFinish = (e: React.FormEvent) => {
+  const handleFinish = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     alert(`Playlist "${playlistName}" created with ${songs.length} songs!`);
   };
 
   return (
-    <main className="music-page" id="create-playlist-page">
+      <main className="music-page" id="create-playlist-page">
       <div className="music-container">
         <div className="page-intro">
           <div><p className="eyebrow">MAKE YOUR OWN MIX</p>
             <h1>Create a new playlist<span className="title-dot">.</span></h1></div>
           <span className="preview-badge"><span> M1 mockup · sample data</span></span>
           </div>
-        </div>
+    
 
-    <div className="music-container">
-      <Form onSubmit={handleFinish}>
+        <Form onSubmit={handleFinish}>
           
-          {/* SECTION 1: Create Playlist Info */}
-          <Card className="Modal-header mb-4 shadow-sm p-3">
-            <Card.Body>
-              <h3 className="Modal-body-title">Create Playlist</h3>
+          {/* Create Playlist Info */}
+          <section className="playlist-form-card mb-4 shadow-sm p-3">
+            <div className="playlist-card-body">
+              <h3 className="body-title">Create Playlist</h3>
               <Row>
                 <Col md={12} className="mb-3">
                   <Form.Group controlId="playlistName">
@@ -111,21 +123,42 @@ export default function CreatePlaylistForm() {
                       value={visibility}
                       onChange={(e) => setVisibility(e.target.value)}
                     >
-                      <option value="Public">Public (Campus Viewable)</option>
+                      <option value="Public">Public</option>
                       <option value="Private">Private</option>
                     </Form.Select>
                   </Form.Group>
                 </Col>
+                <Col>
+                <Button
+                  type="button"
+                  onClick={handleSavePlaylistInfo}
+                  className="primary-music-button"
+                >
+                  {savedInfo ? (
+                    <>
+                      <Check2 size={16} /> Saved
+                    </>
+                  ) : (
+                    'Save'
+                  )}
+                </Button>
+                {infoNotice && (
+                  <span className="demo-note m-0" role="status">
+                    {infoNotice}
+                  </span>
+                )}
+              </Col>
               </Row>
-            </Card.Body>
-          </Card>
+              
+            </div>
+          </section>
 
-          {/* SECTION 2: Add Song Section */}
-          <Card className="mb-4 shadow-sm p-3">
-            <Card.Body>
+          {/* Add Song */}
+          <section className="playlist-form-card mb-4 shadow-sm p-3">
+            <div className="playlist-card-body">
               <h3 className="mb-3">Add Song</h3>
               
-              {/* Row 1: Name, Artist, Year, Genre + Enter Button */}
+              {/* Name, Artist, Year, Genre + Enter Button */}
               <Row className="align-items-end mb-3">
                 <Col md={3}>
                   <Form.Group controlId="songName">
@@ -180,7 +213,7 @@ export default function CreatePlaylistForm() {
                     variant="success" 
                     type="button" 
                     onClick={handleAddSong}
-                    className="w-100"
+                    className="primary-music-button"
                     title="Add song to list"
                   >
                     <Plus size={20} />
@@ -188,7 +221,7 @@ export default function CreatePlaylistForm() {
                 </Col>
               </Row>
 
-              {/* Row 2: Link (optional) */}
+              {/* Link (optional) */}
               <Row className="mb-4">
                 <Col md={12}>
                   <Form.Group controlId="songLink">
@@ -226,8 +259,8 @@ export default function CreatePlaylistForm() {
                 {!songs.length && <p className="text-muted mb-0">No songs added yet.</p>}
               </div>
 
-            </Card.Body>
-          </Card>
+            </div>
+          </section>
 
 
           <div>
@@ -237,7 +270,8 @@ export default function CreatePlaylistForm() {
           </div>
 
         </Form>
-    </div>
+
+      </div>
     </main>
   );
 }
