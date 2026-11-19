@@ -21,7 +21,7 @@ const NavBar: React.FC = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link as="button" onClick={() => setPlannedPage('Discover Playlists')}>Discover</Nav.Link>
-              <Nav.Link as="button" onClick={() => setPlannedPage('Create Playlist')}>Create Playlist</Nav.Link>
+              <Nav.Link href="/create-playlist" active={pathName === '/create-playlist'}>Create Playlist</Nav.Link>
               <Nav.Link href="/leaderboard" active={pathName === '/leaderboard'}>Leaderboard</Nav.Link>
               <Nav.Link href="/my-playlists" active={pathName === '/my-playlists'}>My Playlists</Nav.Link>
             </Nav>
@@ -39,7 +39,7 @@ const NavBar: React.FC = () => {
                   {role === 'ADMIN' && <NavDropdown.Item id="admin-stuff-nav" href="/admin">Admin</NavDropdown.Item>}
                 </> : <>
                   <NavDropdown.Item id="login-dropdown-sign-in" href="/auth/signin"><PersonFill />Sign in</NavDropdown.Item>
-                  <NavDropdown.Item id="login-dropdown-sign-up" href="/auth/signup"><PersonPlusFill />Sign up</NavDropdown.Item>
+                  <NavDropdown.Item id="login-dropdown-sign-up" href="/auth/signup"><PersonPlusFill />Create Account</NavDropdown.Item>
                 </>}
               </NavDropdown>
             </Nav>

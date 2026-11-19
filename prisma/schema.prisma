@@ -24,21 +24,17 @@ model User {
   role     Role   @default(USER)
 }
 
-model Song {
-  name       String
-  id         Int       @id @default(autoincrement())
-  author     String
-  link       String?
-  date       String
-  playlist   Playlist? @relation(fields: [playlistId], references: [id])
-  playlistId Int?
+enum Condition {
+  excellent
+  good
+  fair
+  poor
 }
 
-model Playlist {
+model Stuff {
+  id        Int       @id @default(autoincrement())
   name      String
-  id        Int      @id @default(autoincrement())
-  author    String
-  songs     Song[]
-  createdAt DateTime @default(now())
-  likes     Int      @default(0)
+  quantity  Int
+  condition Condition @default(good)
+  owner     String
 }
