@@ -45,7 +45,6 @@ export default function MyPlaylists({ initialPlaylist }: { initialPlaylist?: str
   const [removed, setRemoved] = useState<Playlist | null>(null);
   const [query, setQuery] = useState('');
   const [sort, setSort] = useState('recent');
-  const [playlistNotice, setPlaylistNotice] = useState<'Create Playlist' | 'Edit Playlist' | null>(null);
   const mine = ownedPlaylists;
   const shareUrl = share && typeof window !== 'undefined' ? `${window.location.origin}/my-playlists?playlist=${share.id}` : '';
   const filtered = mine.filter((p) => `${p.title} ${p.category}`.toLowerCase().includes(query.toLowerCase()));
@@ -84,7 +83,7 @@ export default function MyPlaylists({ initialPlaylist }: { initialPlaylist?: str
           <div className="banner-record" aria-hidden="true"><span /></div>
         </section>
         <section className="playlist-section" aria-labelledby="mine-heading">
-          <div className="section-heading"><div><p className="eyebrow">CURATED BY YOU</p><h2 id="mine-heading">My Playlists <span className="count-badge">{mine.length}</span></h2><p>Your moods, your moments, your soundtrack.</p></div><button className="primary-music-button" onClick={() => setPlaylistNotice('Create Playlist')}><Plus size={21} /> Create Playlist</button></div>
+          <div className="section-heading"><div><p className="eyebrow">CURATED BY YOU</p><h2 id="mine-heading">My Playlists <span className="count-badge">{mine.length}</span></h2><p>Your moods, your moments, your soundtrack.</p></div><Link className="primary-music-button" href="/create-playlist"><Plus size={21} /> Create Playlist</Link></div>
           <div className="library-toolbar"><label className="library-search"><Search /><input aria-label="Search your playlists" placeholder="Find a playlist in your collection…" value={query} onChange={(e) => setQuery(e.target.value)} /></label><label className="sort-control">Sort by <select aria-label="Sort your playlists" value={sort} onChange={(e) => setSort(e.target.value)}><option value="recent">Recently added</option><option value="likes">Most liked</option><option value="name">Playlist name</option></select></label></div>
           <div className="playlist-grid">{filtered.map((p) => <PlaylistCard key={p.id} playlist={p} onView={() => setView(p)} onEdit={() => router.push('/edit-playlist')} onShare={() => openShare(p)} />)}</div>
           {!filtered.length && <div className="empty-library"><Disc /><h3>No playlists found</h3><p>Try another title or category.</p><button onClick={() => setQuery('')}>Clear search</button></div>}
@@ -192,11 +191,6 @@ export default function MyPlaylists({ initialPlaylist }: { initialPlaylist?: str
             {copied ? <><Check2 /> Copied!</> : 'Copy Link'}
           </Button>
         </Modal.Footer>
-      </Modal>
-      <Modal show={!!playlistNotice} onHide={() => setPlaylistNotice(null)} centered contentClassName="music-modal">
-        <Modal.Header closeButton><Modal.Title>{playlistNotice}</Modal.Title></Modal.Header>
-        <Modal.Body>This will link to the {playlistNotice} page once it’s ready.</Modal.Body>
-        <Modal.Footer><Button variant="light" onClick={() => setPlaylistNotice(null)}>Close</Button></Modal.Footer>
       </Modal>
     </main>
   );
