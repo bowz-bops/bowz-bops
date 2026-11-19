@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import CreatorPlaylists from '@/components/music/CreatorPlaylists';
 import { playlists } from '@/lib/mockups/playlists';
-import '@/components/music/music.css';
+import '@/components/music/playlist-profile.css';
 
 export default async function CreatorProfilePage({ params }: { params: Promise<{ username: string }> }) {
   const { username } = await params;

@@ -5,7 +5,6 @@ import { useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 import { Container, Nav, Navbar, NavDropdown, Modal, Button } from 'react-bootstrap';
 import { BoxArrowRight, Headphones, Lock, PersonFill, PersonPlusFill } from 'react-bootstrap-icons';
-import './music/music.css';
 
 const NavBar: React.FC = () => {
   const { data: session } = useSession();
@@ -21,13 +20,15 @@ const NavBar: React.FC = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link as="button" onClick={() => setPlannedPage('Discover Playlists')}>Discover</Nav.Link>
+              <Nav.Link href="/discover" active={pathName === '/discover'}>Discover</Nav.Link>
               <Nav.Link href="/create-playlist" active={pathName === '/create-playlist'}>Create Playlist</Nav.Link>
               <Nav.Link href="/leaderboard" active={pathName === '/leaderboard'}>Leaderboard</Nav.Link>
               <Nav.Link href="/my-playlists" active={pathName === '/my-playlists'}>My Playlists</Nav.Link>
             </Nav>
             <Nav>
-              <NavDropdown id="login-dropdown" title={<><PersonFill /> {session ? (session.user?.name === currentUser ? currentUser?.split('@')[0] : session.user?.name || 'Account') : 'Sign In'}</>}>
+              <NavDropdown id="login-dropdown" title={
+                <><PersonFill /> {session ? (session.user?.name === currentUser ? currentUser?.split('@')[0] : session.user?.name || 'Account') : 'Sign In'}</>
+              }>
                 {session ? <>
                   <NavDropdown.Item href="/my-playlists">My profile & playlists</NavDropdown.Item>
                   <NavDropdown.Item id="login-dropdown-sign-out" href="/api/auth/signout"><BoxArrowRight />Sign Out</NavDropdown.Item>
@@ -38,7 +39,7 @@ const NavBar: React.FC = () => {
                   {role === 'ADMIN' && <NavDropdown.Item id="admin-stuff-nav" href="/admin">Admin</NavDropdown.Item>}
                 </> : <>
                   <NavDropdown.Item id="login-dropdown-sign-in" href="/auth/signin"><PersonFill />Sign in</NavDropdown.Item>
-                  <NavDropdown.Item id="login-dropdown-sign-up" href="/auth/signup"><PersonPlusFill />Sign up</NavDropdown.Item>
+                  <NavDropdown.Item id="login-dropdown-sign-up" href="/auth/signup"><PersonPlusFill />Create Account</NavDropdown.Item>
                 </>}
               </NavDropdown>
             </Nav>

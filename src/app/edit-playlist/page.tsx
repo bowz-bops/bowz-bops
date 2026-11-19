@@ -7,7 +7,6 @@ export const metadata: Metadata = {
   description: 'Edit an existing playlist.' 
 };
 
-export const EDIT_PLAYLIST_PATH = '/edit-playlist';
 
 export default function EditPlaylistPage() {
   return <EditPlaylistForm />;
