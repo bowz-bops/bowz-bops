@@ -26,7 +26,9 @@ const NavBar: React.FC = () => {
               <Nav.Link href="/my-playlists" active={pathName === '/my-playlists'}>My Playlists</Nav.Link>
             </Nav>
             <Nav>
-              <NavDropdown id="login-dropdown" title={<><PersonFill /> {session ? (session.user?.name === currentUser ? currentUser?.split('@')[0] : session.user?.name || 'Account') : 'Sign In'}</>}>
+              <NavDropdown id="login-dropdown" title={
+                <><PersonFill /> {session ? (session.user?.name === currentUser ? currentUser?.split('@')[0] : session.user?.name || 'Account') : 'Sign In'}</>
+              }>
                 {session ? <>
                   <NavDropdown.Item href="/my-playlists">My profile & playlists</NavDropdown.Item>
                   <NavDropdown.Item id="login-dropdown-sign-out" href="/api/auth/signout"><BoxArrowRight />Sign Out</NavDropdown.Item>
