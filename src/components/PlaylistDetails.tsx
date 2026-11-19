@@ -27,7 +27,6 @@ import {
   TwitterX,
   Youtube,
 } from 'react-bootstrap-icons';
-import type { Playlist as PrismaPlaylist, Song as PrismaSong } from '@prisma/client';
 import { playlists as mockupPlaylists, type Playlist as MockupPlaylist } from '@/lib/mockups/playlists';
 import AlbumArt from './music/AlbumArt';
 
@@ -162,7 +161,6 @@ export type NormalizedTrack = {
 };
 
 export type SongInput =
-  | PrismaSong
   | {
       id?: string | number;
       title?: string;
@@ -176,9 +174,7 @@ export type SongInput =
     };
 
 export type PlaylistInput =
-  | PrismaPlaylist
   | MockupPlaylist
-  | (PrismaPlaylist & { songs?: SongInput[] })
   | {
       id?: string | number;
       name?: string;

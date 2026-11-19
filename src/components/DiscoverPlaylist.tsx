@@ -18,7 +18,6 @@ import {
   Heart,
   HeartFill,
   Instagram,
-  Plus,
   Search,
   Share,
   Spotify,
