@@ -132,7 +132,7 @@ export default function EditPlaylistForm({
         </div>
 
         <Form onSubmit={handleFinish}>
-          
+
           {/* Playlist Details */}
           <Card className="mb-4 shadow-sm p-3">
             <Card.Body>
@@ -164,11 +164,13 @@ export default function EditPlaylistForm({
                         setInfoSaved(false);
                       }}
                     >
+                      <option value="Studying">Studying</option>
                       <option value="Beach">Beach</option>
-                      <option value="Indie">Indie</option>
-                      <option value="Island">Island / Reggae</option>
-                      <option value="Study">Study Beats</option>
                       <option value="Workout">Workout</option>
+                      <option value="Chill"> Chill</option>
+                      <option value="Party">Party</option>
+                      <option value="Commuting">Commuting</option>
+                      <option value="Throwbacks">Throwbacks</option>
                     </Form.Select>
                   </Form.Group>
                 </Col>

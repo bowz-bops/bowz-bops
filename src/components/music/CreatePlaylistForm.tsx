@@ -15,7 +15,7 @@ interface Song {
 
 export default function CreatePlaylistForm() {
   const [playlistName, setPlaylistName] = useState('');
-  const [category, setCategory] = useState('Study');
+  const [category, setCategory] = useState('Studying');
   const [visibility, setVisibility] = useState('Public');
   const[savedInfo, setSavedInfo] = useState(false);
   const [infoNotice, setInfoNotice] = useState('');
@@ -112,11 +112,13 @@ export default function CreatePlaylistForm() {
                       value={category}
                       onChange={(e) => setCategory(e.target.value)}
                     >
+                      <option value="Studying">Studying</option>
                       <option value="Beach">Beach</option>
-                      <option value="Indie">Indie</option>
-                      <option value="Island">Island / Reggae</option>
-                      <option value="Study">Study Beats</option>
                       <option value="Workout">Workout</option>
+                      <option value="Chill">Chill</option>
+                      <option value="Party">Party</option>
+                      <option value="Commuting">Commuting</option>
+                      <option value="Throwbacks">Throwbacks</option>
                     </Form.Select>
                   </Form.Group>
                 </Col>
