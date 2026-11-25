@@ -38,3 +38,29 @@ model Stuff {
   condition Condition @default(good)
   owner     String
 }
+
+enum Visibility {
+  public
+  private
+}
+
+model Song {
+  playlistId Int
+  order Int @default(autoincrement())
+  name String @id
+  artist String
+  year Int?
+  genre String?
+  link String
+  Playlist Playlist @relation(fields: [playlistId], references: [id])
+}
+
+model Playlist {
+  id Int @id @default(autoincrement())
+  name String
+  category String
+  visibility Visibility @default(public)
+  songs Song[]
+  numSongs Int
+  likes Int @default(0)
+}
